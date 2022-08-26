@@ -1,0 +1,39 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [{
+            "name": "client",
+            "image": "akanksha84/mulit-client",
+            "hostname": "client",
+            "essential": false
+
+        },
+        {
+            "name": "server",
+            "image": "akanksha84/multi-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+
+            "name": "worker",
+            "image": "akanksha84/multi-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "akanksha84/multi-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [{
+                "hostPort": 80,
+                "containerPort": 80
+            }],
+
+
+            "links": ["client", "server"]
+
+        }
+
+    ]
+}
